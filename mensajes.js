@@ -1,24 +1,36 @@
-const mensajeRandom = () => {
-    const randomNum = Math.floor(Math.random()*6);
-    switch(randomNum){
-        case 0: 
-            return 'Hoy vas a tener un buen día'
-        case 1: 
-            return 'Hoy vas a tener un mal día'
-        case 2:
-            return 'Mejor no salgas hoy de casa'
-        case 3:
-            return 'Buen dia para la loteria!'
-        case 4:
-            return 'Ten cuidado con una tortuga gigante'
-        case 5:
-            return 'Hoy todo te va a saber a chocolate'
-        default:
-            return 'Un dia cualquiera'
+//Generamos un numero aleatorio en base a la longitud del array
+const indexRandom = num => Math.floor(Math.random() * num);
 
+//Creamos el objeto con las cosas en mente que tiene la persona
+const lectorDeMentes = {
+    animal: ['El perro', 'El gato', 'La jirafa', 'La rana', 'La hiena', 'La ballena'],
+    comida: ['La pasta', 'La pizza', 'La hamburguesa', 'El sushi', 'Los tacos'],
+    pensamiento: ['Irte de viaje', 'Cambiar de trabajo', 'Ganar la loteria', 'Conseguir pareja', 'Ser un superheroe']
+}
+//Guardamos cada item seleccionado en el siguiente array
+const menteLeida = [];
+//Recorremos el objeto
+for (item in lectorDeMentes) {
+
+    //Almacenamos el index del array generado aleatoriamente en una variable
+    let menteInd = indexRandom(lectorDeMentes[item].length);
+
+    switch(item){
+        case 'animal':
+            menteLeida.push(`Tu animal favorito es: ${lectorDeMentes[item][menteInd]}`);
+            break
+        case 'comida':
+            menteLeida.push(`Tu comida favorita es: ${lectorDeMentes[item][menteInd]}`);
+            break
+        case 'pensamiento':
+            menteLeida.push(`Estas pensando en: ${lectorDeMentes[item][menteInd]}`);
+            break
+        default :
+            menteLeida.push('Tienes la mente algo borrosa');
     }
-
-
 }
 
-console.log(mensajeRandom());
+//Pasamos a string menteLeida y le agregamos un salto de linea para cada elemento del array
+const leidaString = () => menteLeida.join('\n');
+
+console.log(leidaString());
